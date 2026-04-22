@@ -8,15 +8,21 @@ const eventSchema = new mongoose.Schema(
     },
     description: String,
     date: {
-      type: date,
+      type: String,
       required: true,
     },
-    location: {
+    venue: {
       type: String,
       default: "Edo State University Iyamho,Uzairue",
+    },
+    image: {
+      type: [String],
+    },
+    cloudinary_id: {
+      type: String,
     },
   },
   { timestamps: true },
 );
 
-export const Event = mongoose.Model("Event", eventSchema);
+export const Event = mongoose.model("Event", eventSchema);
