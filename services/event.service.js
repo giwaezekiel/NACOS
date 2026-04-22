@@ -1,7 +1,5 @@
 import { eventRepository } from "../repository/event.repository.js";
 import { Event } from "../models/event.model.js";
-import cloudinary from "cloudinary";
-// import cloudinary from "../utils/cloudinary.js";
 
 export const eventServices = {
   findAll: async () => {
