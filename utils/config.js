@@ -5,7 +5,6 @@ dotenv.config();
 export const config = {
   PORT: process.env.PORT,
   DB_URI: process.env.DB_URI,
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  JWT_SECRET: process.env.JWT_SECRET,
+  NODE_ENV: process.env.NODE_ENV,
 };

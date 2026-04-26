@@ -1,9 +1,18 @@
 import { config } from "./config.js";
 import mongoose from "mongoose";
+import { errorAuditEmitter } from "./loggers/error.js";
 
 export const connectDB = async () => {
   try {
-    mongoose.connect(config.DB_URI);
-    console.log("database connected Succesfully");
-  } catch (error) {}
+    await mongoose.connect(config.DB_URI);
+    auditEmitter.emit("log", {
+      type: "INFO",
+      message: "Database connected Successfully ",
+    });
+  } catch (error) {
+    await errorAuditEmitter.emit("error", {
+      type: "ERROR",
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
 };

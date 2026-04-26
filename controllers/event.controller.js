@@ -36,13 +36,11 @@ export const eventController = {
   create: async (req, res, next) => {
     try {
       const data = req.body;
-      const result = await cloudinary.uploader.upload(req.file.path);
+
       const event = eventServices.create(data);
       res.status(201).json({
         success: true,
         data,
-        image: result.secure_url,
-        cloudinary_id: result.public_id,
       });
     } catch (error) {
       next(error);
