@@ -18,6 +18,11 @@ const eventSchema = new mongoose.Schema(
     image: {
       type: [String],
     },
+    status: {
+      type: String,
+      enum: ["upcoming", "previous"],
+      default: "upcoming",
+    },
     cloudinary_id: {
       type: String,
     },
