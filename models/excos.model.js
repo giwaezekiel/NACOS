@@ -13,6 +13,10 @@ const excosSchema = new mongoose.Schema(
     image: {
       type: [String],
     },
+    email: {
+      type: String,
+      require: [true, "exco's email is required"],
+    },
     status: {
       type: String,
       enum: ["current", "previous"],

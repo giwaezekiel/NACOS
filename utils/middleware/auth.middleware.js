@@ -24,3 +24,4 @@ export const AuthMiddleware = async () => {
     next(error);
   }
 };
+export const emailMiddleware = async () => {};
