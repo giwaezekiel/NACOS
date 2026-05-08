@@ -1,10 +1,10 @@
 import { Auth } from "../models/auth.model.js";
 
-export const authRepository = {
-  create: async (data) => {
+export class authRepository {
+  static async create(data) {
     return await Auth.create(data);
-  },
-  get: async (data) => {
+  }
+  static async get(data) {
     return await Auth.findOne({ email: data });
-  },
-};
+  }
+}

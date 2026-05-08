@@ -9,6 +9,10 @@ const authSchema = new mongoose.Schema({
     type: String,
     require: [true, "Enter your email"],
   },
+  phone: {
+    type: String,
+    require: [true, "Enter your phone number"],
+  },
   password: {
     type: String,
     require: [true, "Enter your password"],

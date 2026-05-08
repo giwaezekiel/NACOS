@@ -1,16 +1,20 @@
 import { Excos } from "../models/excos.model.js";
 
-export const excoRepository = {
-  create: async (data) => {
+export class excoRepository {
+  static async create(data) {
     return Excos(data).save();
-  },
-  getAll: async () => {
+  }
+  static async getAll() {
     return await Excos.find().exec();
-  },
-  get: async (id) => {
+  }
+  static async get(id) {
     return Excos.findById(id).exec();
-  },
-  update: async (id, data) => {
+  }
+  static async update(id, data) {
     return Excos.findByIdAndUpdate(id, data);
-  },
-};
+  }
+
+  static async delete(id) {
+    return Excos.findByIdAndDelete(id);
+  }
+}

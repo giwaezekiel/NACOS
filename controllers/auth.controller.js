@@ -1,8 +1,8 @@
 import { authService } from "../services/auth.service.js";
 import { payload } from "../utils/helpers/helper.js";
 
-export const authController = {
-  signUp: async (req, res, next) => {
+export class authController {
+  static async signUp(req, res, next) {
     try {
       const data = req.body;
       await authService.signUp(data);
@@ -10,12 +10,13 @@ export const authController = {
         success: true,
         name: data?.name,
         email: data?.email,
+        phone: data?.phone,
       });
     } catch (error) {
       next(error);
     }
-  },
-  signIn: async (req, res, next) => {
+  }
+  static async signIn(req, res, next) {
     try {
       const data = req.body;
       await authService.signIn(data);
@@ -27,5 +28,5 @@ export const authController = {
     } catch (error) {
       next(error);
     }
-  },
-};
+  }
+}

@@ -6,4 +6,5 @@ export const excoRouter = Router();
 excoRouter.post("/", excoController.create);
 excoRouter.get("/", excoController.getAll);
 excoRouter.get("/:id", excoController.get);
-excoRouter.put("/:id", excoController.update);
+excoRouter.patch("/:id", excoController.update);
+excoRouter.delete("/:id", excoController.delete);

@@ -1,8 +1,8 @@
 import { Excos } from "../models/excos.model.js";
 import { excoRepository } from "../repository/exco.repository.js";
 
-export const excoService = {
-  create: async (data) => {
+export class excoService {
+  static async create(data) {
     const { name, title, image } = data;
     if (!name || !title) {
       throw new Error("Input all fields");
@@ -13,22 +13,29 @@ export const excoService = {
       title,
       image: [],
     });
-  },
-  getAll: async () => {
+  }
+  static async getAll() {
     return await excoRepository.getAll();
-  },
-  get: async (id) => {
+  }
+  static async get(id) {
     const exco = await excoRepository.get(id);
     if (!exco) {
       throw new Error("Exco not found");
     }
     return exco;
-  },
-  update: async (id, data) => {
+  }
+  static async update(id, data) {
     const exco = await excoRepository.update(id);
     if (!exco) {
-      throw new Error("Exco is not found");
+      throw new Error("Exco not found");
     }
     return await excoRepository.update(id, data);
-  },
-};
+  }
+  static async delete(id) {
+    const exco = await excoRepository.delete(id);
+    if (!exco) {
+      throw new Error("Exco Not found");
+    }
+    return;
+  }
+}

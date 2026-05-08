@@ -7,3 +7,5 @@ export const eventRouter = Router();
 
 eventRouter.post("/", eventController.create);
 eventRouter.get("/", eventController.findAll);
+eventRouter.patch("/:id", eventController.update);
+eventRouter.delete("/:id", eventController.delete);

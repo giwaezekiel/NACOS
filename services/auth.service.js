@@ -4,25 +4,38 @@ import bcrypt from "bcryptjs";
 import { get } from "mongoose";
 import { hashPassword } from "../utils/helpers/helper.js";
 
-export const authService = {
-  signUp: async (data) => {
-    const { name, email, password } = data;
-    if (!name || !email || !password) {
+export class authService {
+  //sign up logic
+  static async signUp(data) {
+    const { name, email, phone, password } = data;
+    if (!name || !email || !phone || !password) {
       throw new Error("Input all fields");
     }
+
+    let checkEmailTransform = email?.toLowerCase();
+
+    let correctSuffix = "edouniversity.edu.ng";
+    let validEmail = email.split("@")[1];
+
+    if (validEmail !== correctSuffix) {
+      throw new Error("Email must be a valid school email");
+    }
+
     //check if password exists
-    const exists = await Auth.findOne({ email });
+    const exists = await Auth.findOne({ email: checkEmailTransform });
     if (exists) {
       throw new Error("User already exists");
     }
-
     return await authRepository.create({
       name,
-      email,
+      email: checkEmailTransform,
+      phone,
       password: await hashPassword(password),
     });
-  },
-  signIn: async (data) => {
+  }
+
+  //sign in logic
+  static async signIn(data) {
     const { email, password } = data;
     if (!email || !password) {
       throw new Error("Input all fields");
@@ -41,5 +54,5 @@ export const authService = {
     }
 
     return;
-  },
-};
+  }
+}

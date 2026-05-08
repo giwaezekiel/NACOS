@@ -1,8 +1,9 @@
 import { excoService } from "../services/exco.service.js";
 import { Excos } from "../models/excos.model.js";
 
-export const excoController = {
-  create: async (req, res, next) => {
+export class excoController {
+  //create exco
+  static async create(req, res, next) {
     try {
       const data = req.body;
       await excoService.create(data);
@@ -13,8 +14,9 @@ export const excoController = {
     } catch (error) {
       next(error);
     }
-  },
-  getAll: async (req, res, next) => {
+  }
+  //fetch all available excos
+  static async getAll(req, res, next) {
     try {
       const excos = await excoService.getAll();
       res.status(200).json({
@@ -25,8 +27,9 @@ export const excoController = {
     } catch (error) {
       next(error);
     }
-  },
-  get: async (req, res, next) => {
+  }
+  //fetch a specific exco
+  static async get(req, res, next) {
     try {
       const { id } = req.params;
       const exco = await excoService.get(id);
@@ -37,8 +40,9 @@ export const excoController = {
     } catch (error) {
       next(error);
     }
-  },
-  update: async (req, res, next) => {
+  }
+  //fetch an already existing exco and update details
+  static async update(req, res, next) {
     try {
       const { id } = req.params;
       const exco = await excoService.update(id, req.body);
@@ -50,5 +54,17 @@ export const excoController = {
     } catch (error) {
       next(error);
     }
-  },
-};
+  }
+
+  static async delete(req, res, next) {
+    try {
+      const { id } = req.params;
+      const exco = await excoService.delete(id);
+      res.status(200).json({
+        success: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+}

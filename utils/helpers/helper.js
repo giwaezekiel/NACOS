@@ -19,3 +19,5 @@ export const payload = async (email) => {
     expiresIn: "2d",
   });
 };
+
+export const emailVerification = () => {};

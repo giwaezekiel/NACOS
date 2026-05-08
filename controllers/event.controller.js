@@ -20,8 +20,8 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 //   limits: { fileSize: 5 * 1024 * 1024 },
 // });
 
-export const eventController = {
-  findAll: async (req, res, next) => {
+export class eventController {
+  static async findAll(req, res, next) {
     try {
       let data = await eventServices.findAll();
       res.status(200).json({
@@ -32,8 +32,8 @@ export const eventController = {
     } catch (error) {
       next(error);
     }
-  },
-  create: async (req, res, next) => {
+  }
+  static async create(req, res, next) {
     try {
       const data = req.body;
 
@@ -45,5 +45,30 @@ export const eventController = {
     } catch (error) {
       next(error);
     }
-  },
-};
+  }
+
+  static async update(req, res, next) {
+    try {
+      const { id } = req.params;
+      const event = await eventServices.update(id, req.body);
+      res.status(200).json({
+        success: true,
+        data: event,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async delete(req, res, next) {
+    try {
+      const { id } = req.params;
+      const event = await eventServices.delete(id);
+      res.status(200).json({
+        success: true,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+}
