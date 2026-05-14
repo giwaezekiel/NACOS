@@ -3,6 +3,7 @@ import { authRepository } from "../repository/auth.repository.js";
 import bcrypt from "bcryptjs";
 import { get } from "mongoose";
 import { hashPassword } from "../utils/helpers/helper.js";
+import { config } from "../utils/config.js";
 
 export class authService {
   //sign up logic
@@ -14,10 +15,9 @@ export class authService {
 
     let checkEmailTransform = email?.toLowerCase();
 
-    let correctSuffix = "edouniversity.edu.ng";
     let validEmail = email.split("@")[1];
 
-    if (validEmail !== correctSuffix) {
+    if (validEmail !== config.EMAIL_STRUCT) {
       throw new Error("Email must be a valid school email");
     }
 
